@@ -2,7 +2,8 @@
 #include "ScreenManager.h"
 #include "Screen.h"
 #include "Menu.h"
-
+#include "Game.h"
+#include <iostream>
 
 CurrentScreen currentScreen;
 float mouseX;
@@ -28,7 +29,7 @@ int run(void)
 
         slRender();
     }
-
+    
     slClose();
 
     return 0;
@@ -51,7 +52,7 @@ void update()
         break;
 
     case game:
-        //updateGame();
+        updateGame();
         break;
 
     default:
@@ -67,7 +68,7 @@ void draw()
     }
     else if (currentScreen == game)
     {
-        //drawGame();
+        drawGame();
     }
 }
 
