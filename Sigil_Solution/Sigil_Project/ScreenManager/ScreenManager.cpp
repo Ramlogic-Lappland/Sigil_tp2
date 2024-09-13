@@ -5,13 +5,18 @@
 
 
 CurrentScreen currentScreen;
-
+float mouseX;
+float mouseY;
 
 int run(void)
 {
     init();
 
-    slWindow(width, height, "BreakOut", false);
+    slWindow(screenWidth, screenHeight, "BreakOut", false);
+
+    slSetFont(slLoadFont("bloodcrow.ttf"), 24);
+    slSetTextAlign(SL_ALIGN_CENTER);
+
 
     while (!slShouldClose() && !slGetKey(SL_KEY_ESCAPE))
     {
@@ -36,6 +41,9 @@ void init()
 
 void update()
 {
+    mouseX = slGetMouseX();
+    mouseY = slGetMouseY();
+
     switch (currentScreen)
     {
     case menu:
