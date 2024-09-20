@@ -15,8 +15,8 @@ void initMenu()
     plyGameBttn.width = 400 + offset;
     plyGameBttn.height = 80;
 
-    plyGameBttn.posX = 510;
-    plyGameBttn.posY = 610;
+    plyGameBttn.posX = screenWidth / 2;
+    plyGameBttn.posY = (screenHeight / plyGameBttn.height) * 60;
 
     plyGameBttn.state = 0;
 }
@@ -32,8 +32,8 @@ void drawMenu()
     //Menu text
     slSetForeColor(0.0, 0.8, 0.2, 1.0);
     slSetFontSize(60);
-    slText(510, 800, "BreakOut");
-    slRectangleFill(510, 780, 300, 5);
+    slText(screenWidth/2, (screenHeight /20) * 18, "BreakOut");
+    slRectangleFill(screenWidth/2, (screenHeight / 20) * 17 + 30, 300, 3); // divide screen in 20 segments pick the nr 17 below 18 cuz text is 18 and add half of the font size
 
     //Press Enter to play
     slSetFontSize(40);
