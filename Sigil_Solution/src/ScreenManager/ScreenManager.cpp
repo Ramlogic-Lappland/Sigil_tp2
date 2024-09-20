@@ -64,13 +64,18 @@ void update()
 
 void draw()
 {
-    if (currentScreen == menu)
+    switch (currentScreen)
     {
+    case menu:
         drawMenu();
-    }
-    else if (currentScreen == game)
-    {
+        break;
+
+    case game:
         drawGame();
+        break;
+
+    default:
+        break;
     }
 }
 

@@ -1,8 +1,10 @@
-#include "Menu.h"
 #include "sl.h"
 #include "Screen.h"
+
+#include "Menu.h"
 #include "ScreenManager.h"
 #include "button.h"
+#include "Game.h"
 
 #include <iostream>
 
@@ -24,6 +26,19 @@ void initMenu()
 void updateMenu()
 {
     ButtonCollision(plyGameBttn, mouseX, mouseY);
+    if (plyGameBttn.state)
+    {
+      if (slGetMouseButton(SL_MOUSE_BUTTON_1))
+      {
+         currentScreen = game;
+         initGame();
+      }
+    }
+
+    if (slGetKey(SL_KEY_ENTER)) {
+        currentScreen = game;
+        initGame();
+    }
 }
 
 void drawMenu()
@@ -45,10 +60,6 @@ void drawMenu()
         slRectangleFill(plyGameBttn.posX, plyGameBttn.posY, plyGameBttn.width, plyGameBttn.height);
         slSetForeColor(0.0, 0.0, 0.0, 1.0);
         slText(plyGameBttn.posX, plyGameBttn.posY - 10, "Press Enter to play");
-        if (slGetMouseButton(SL_MOUSE_BUTTON_1))
-        {
-            currentScreen = game;
-        }
     }
     else
         slSetForeColor(0.0, 0.8, 0.2, 1.0);
@@ -56,17 +67,3 @@ void drawMenu()
 
 }
 
-
-/*
-   if (mouseX > 510 - 201 && mouseX < 510 + 201 && mouseY > 610 + 100 && mouseY < 610 + 180)
-    {
-        slRectangleFill(510, 610, slGetTextWidth("Press Enter to play") + 40, 60);
-        slSetForeColor(0.0, 0.0, 0.0, 1.0);
-        slText(510, 600, "Press Enter to play");
-        if (slGetMouseButton(SL_MOUSE_BUTTON_1))
-        {
-            currentScreen = game;
-        }
-
-    }
-*/
