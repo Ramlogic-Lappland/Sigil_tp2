@@ -15,3 +15,5 @@ enum CurrentScreen
 extern CurrentScreen currentScreen;
 extern float mouseX;
 extern float mouseY;
+
+extern const int offset;

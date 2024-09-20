@@ -5,6 +5,7 @@
 #include "Game.h"
 #include <iostream>
 
+const int offset = 40;
 CurrentScreen currentScreen;
 float mouseX;
 float mouseY;
@@ -37,6 +38,7 @@ int run(void)
 
 void init()
 {
+    initMenu();
     CurrentScreen currentScreen = menu;
 }
 
