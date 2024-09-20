@@ -16,7 +16,7 @@ int run(void)
 
     slWindow(screenWidth, screenHeight, "BreakOut", false);
 
-    slSetFont(slLoadFont("bloodcrow.ttf"), 24);
+    slSetFont(slLoadFont("res/bloodcrow.ttf"), 24);
     slSetTextAlign(SL_ALIGN_CENTER);
 
 

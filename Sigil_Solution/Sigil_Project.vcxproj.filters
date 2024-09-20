@@ -15,40 +15,43 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
+    <ClCompile Include="src\Main.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="ScreenManager\ScreenManager.cpp">
+    <ClCompile Include="src\ScreenManager\Screen.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="ScreenManager\Screen.cpp">
+    <ClCompile Include="src\ScreenManager\ScreenManager.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="Menu\Menu.cpp">
+    <ClCompile Include="src\Menu\Menu.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Game.cpp">
+    <ClCompile Include="src\Game\Game.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="Button\button.cpp">
+    <ClCompile Include="src\Button\button.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ScreenManager\ScreenManager.h">
+    <ClInclude Include="src\ScreenManager\Screen.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="ScreenManager\Screen.h">
+    <ClInclude Include="src\ScreenManager\ScreenManager.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Menu\Menu.h">
+    <ClInclude Include="src\Menu\Menu.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Game.h">
+    <ClInclude Include="src\Game\Game.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Button\button.h">
+    <ClInclude Include="src\Button\button.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="res\bloodcrow.ttf" />
   </ItemGroup>
 </Project>
