@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Brick\brick.cpp" />
     <ClCompile Include="src\Button\button.cpp" />
     <ClCompile Include="src\Game\Game.cpp" />
     <ClCompile Include="src\Main.cpp" />
@@ -28,6 +29,8 @@
     <ClCompile Include="src\ScreenManager\ScreenManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Brick\brick.h" />
+    <ClInclude Include="src\Brick\vector2.h" />
     <ClInclude Include="src\Button\button.h" />
     <ClInclude Include="src\Game\Game.h" />
     <ClInclude Include="src\Menu\Menu.h" />
@@ -104,7 +107,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)libs\sigil-vc2015\include;$(SolutionDir)src\Menu;$(SolutionDir)src\Button;$(SolutionDir)src\Game;$(SolutionDir)src\Player;$(SolutionDir)src\ScreenManager;$(SolutionDir)res</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)libs\sigil-vc2015\include;$(SolutionDir)src\Menu;$(SolutionDir)src\Button;$(SolutionDir)src\Game;$(SolutionDir)src\Brick;$(SolutionDir)src\Player;$(SolutionDir)src\ScreenManager;$(SolutionDir)res</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -126,7 +129,7 @@ xcopy "$(SolutionDir)res" "$(OutDir)res" /i /y /e</Command>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)libs\sigil-vc2015\include;$(SolutionDir)src\Menu;$(SolutionDir)src\Button;$(SolutionDir)src\Game;$(SolutionDir)src\Player;$(SolutionDir)src\ScreenManager;$(SolutionDir)res</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)libs\sigil-vc2015\include;$(SolutionDir)src\Menu;$(SolutionDir)src\Button;$(SolutionDir)src\Game;$(SolutionDir)src\Brick;$(SolutionDir)src\Player;$(SolutionDir)src\Brick;$(SolutionDir)src\ScreenManager;$(SolutionDir)res</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
