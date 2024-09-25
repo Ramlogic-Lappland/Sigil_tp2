@@ -7,8 +7,8 @@
 #include "Screen.h"
 #include "ball.h"
 
-const int spacing = 6;
-const int spacingY = 6; // so i can leave a place on top to put lives and score
+const int spacing = 14;
+const int spacingY = 14; // so i can leave a place on top to put lives and score
 const int brickWidth = 80;
 const int brickHeight = 30;
 int startingHeight = screenHeight - 60;

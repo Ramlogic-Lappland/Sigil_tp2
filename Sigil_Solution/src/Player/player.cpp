@@ -15,7 +15,7 @@ void initPlayer(createPlayer& player)
 	player.x = screenWidth / 2;
 	player.y = 0 + player.Height ;
 
-
+	player.points = 0;
 
 	player.state = 0;
 

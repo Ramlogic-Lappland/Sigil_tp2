@@ -23,18 +23,24 @@ bool Win = 0;
 int startDrawingPos;
 
 std::string score = " ";
+std::string lives = " ";
+
 int tempScore = 0;
+int tempLives = 0;
 
 void initGame()
 {
 	initPlayer(player);
 	initBall(ball, player.x, player.y);
 
-
+	tempScore = 0;
+	tempLives = 0;
 	GameOver = 0;
 	Pause = 0;
 
 	spawnBricks();
+
+
 
 }
 
@@ -52,6 +58,16 @@ void updateGame()
 		}
 	}
 
+	if (player.lives < 1)
+	{
+		GameOver = 1;
+	}
+
+	if (tempScore == 7200)
+	{
+		Win = 1;
+	}
+
 	if (!GameOver || !Win)
 	{
 		if (slGetKey(SL_KEY_ENTER) && !start)
@@ -62,11 +78,6 @@ void updateGame()
 		}
 
 
-		if (player.lives < 1)
-		{
-			GameOver = true;
-		}
-
 		if (start)
 		{
 			
@@ -74,7 +85,9 @@ void updateGame()
 				Pause = !Pause;
 			}
 			tempScore = player.points;
+			tempLives = player.lives;
 			score = "Score: " + std::to_string(tempScore);
+			lives = "Lives: " + std::to_string(tempLives);
 
 		if (!Pause)
 		{
@@ -115,7 +128,7 @@ void drawGame()
 	slSetForeColor(1.0, 1.0, 1.0, 1.0);
 	slText(screenWidth - 100, screenHeight - 30, "Press UP to pause");
 	slText( 100, screenHeight - 30.0, score.c_str());
-
+	slText( 400,  screenHeight - 30.0, lives.c_str());
 	slSetForeColor(0.0, 0.8, 0.2, 1.0);
 
 	slRectangleFill(player.x, player.y, player.width, player.Height);
