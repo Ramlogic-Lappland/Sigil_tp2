@@ -10,6 +10,7 @@ enum CurrentScreen
 {
     menu,
     game,
+    credits,
 };
 
 extern CurrentScreen currentScreen;

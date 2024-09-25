@@ -1,56 +1,98 @@
+#include <iostream>
+#include <math.h>
+#include <string> 
+
 #include "sl.h"
 
+#include "ScreenManager.h"
 #include "Screen.h"
-#include "vector2.h"
-
 #include "Game.h"
 #include "player.h"
 #include "brick.h"
-
-#include <math.h>
+#include "ball.h"
 
 
 createPlayer player;
-bool GameOver;
-bool Pause;
+createBall ball;
 
-const int amountOfBricks = 15;
-const int linesOfBricks  =  6;
+bool GameOver = 0;
+bool Pause = 0;
+bool start = 0;
+bool Win = 0;
 
 int startDrawingPos;
 
-static createBrick brick[linesOfBricks][amountOfBricks] = { 0 };
-
+std::string score = " ";
+int tempScore = 0;
 
 void initGame()
 {
 	initPlayer(player);
+	initBall(ball, player.x, player.y);
 
-	startDrawingPos = screenHeight - player.Height * 2;	
-
-	brickSizeX = screenWidth / 15;
-	brickSizeY = screenHeight / 30;
 
 	GameOver = 0;
 	Pause = 0;
 
-	for (int i = 0; i < linesOfBricks; i++)
-	{
-		for (int j = 0; j < amountOfBricks; j++)
-		{
-			brick[i][j].brickPositionX =  j * brickSizeX + brickSizeX;
-			brick[i][j].brickPositionY =  i * brickSizeY + startDrawingPos;
-			brick[i][j].state = true;
-		}
-	}
+	spawnBricks();
+
 }
 
 void updateGame()
 {
-	if (!GameOver)
+	if (Win || GameOver)
 	{
+		if (slGetKey(SL_KEY_BACKSPACE) && !start)
+		{
+			initGame;
+		}
+		if (slGetKey(SL_KEY_HOME) && !start)
+		{
+		   currentScreen = menu;
+		}
+	}
+
+	if (!GameOver || !Win)
+	{
+		if (slGetKey(SL_KEY_ENTER) && !start)
+		{
+			start = 1;
+			randDirectionBall(ball);
+			ball.speedY = ball.speed;
+		}
+
+
+		if (player.lives < 1)
+		{
+			GameOver = true;
+		}
+
+		if (start)
+		{
+			
+			if (slGetKey(SL_KEY_UP)) {
+				Pause = !Pause;
+			}
+			tempScore = player.points;
+			score = "Score: " + std::to_string(tempScore);
+
 		if (!Pause)
 		{
+			updateBall(ball);
+			checkWallCollision(ball);
+			checkPlayerCollision(ball, player);
+			checkBrickCollision(bricks, 72, ball, player);
+
+
+			if (ball.y - ball.rad < 0) {
+				start = 0;
+				player.x = screenWidth / 2;
+				player.y = 0 + player.Height;
+				initBall(ball, player.x, player.y);
+
+				player.lives -= 1;
+			}
+
 
 			if (slGetKey(SL_KEY_RIGHT)) {
 				movePlayerRight(player);
@@ -58,6 +100,7 @@ void updateGame()
 			if (slGetKey(SL_KEY_LEFT)) {
 				movePlayerLeft(player);
 			}
+		}
 
 		}
 	}
@@ -67,16 +110,61 @@ void updateGame()
 void drawGame()
 {
 	slSetForeColor(0.0, 0.8, 0.2, 1.0);
-	slSetFontSize(60);
-	slRectangleFill(player.posX, player.posY, player.width, player.Height);
 
-	if (brick[linesOfBricks][amountOfBricks].state)
+	slSetFontSize(20);
+	slSetForeColor(1.0, 1.0, 1.0, 1.0);
+	slText(screenWidth - 100, screenHeight - 30, "Press UP to pause");
+	slText( 100, screenHeight - 30.0, score.c_str());
+
+	slSetForeColor(0.0, 0.8, 0.2, 1.0);
+
+	slRectangleFill(player.x, player.y, player.width, player.Height);
+
+	
+
+
+	for (createBrick& Brick : bricks)
 	{
-		if ((linesOfBricks + amountOfBricks) % 2 == 0) slRectangleFill(brick[linesOfBricks][amountOfBricks].brickPositionX - brickSizeX / 2, brick[linesOfBricks][amountOfBricks].brickPositionY - brickSizeY / 2, brickSizeX, brickSizeY);
-		else
+		if (Brick.state)
 		{
-			slSetForeColor(0.0, 0.8, 0.2, 1.0);
+			slRectangleFill(Brick.x, Brick.y, Brick.width, Brick.height);
 		}
 	}
+
+	if (Pause)
+	{
+		slSetFontSize(60);
+		slSetForeColor(1.0, 1.0, 1.0, 1.0);
+		slText(screenWidth / 2, screenHeight / 2 , "Game Is Paused");
+		slSetForeColor(0.0, 0.8, 0.2, 1.0);
+		slSetFontSize(30);
+	}
+
+	if (GameOver)
+	{
+		slSetFontSize(60);
+		slSetForeColor(1.0, 1.0, 1.0, 1.0);
+		slText(screenWidth / 2, screenHeight / 2, "Game Over");
+		slSetForeColor(0.0, 0.8, 0.2, 1.0);
+        slSetFontSize(40);
+		slText(screenWidth / 2, screenHeight / 3, "Press BackSpace to replay");
+		slText(screenWidth / 2, screenHeight / 4, "Press Home to return to menu");
+		slSetFontSize(30);
+	}
+
+	if (Win)
+	{
+		slSetFontSize(60);
+		slSetForeColor(1.0, 1.0, 1.0, 1.0);
+		slText(screenWidth / 2, screenHeight / 2, "You Win");
+		slSetForeColor(0.0, 0.8, 0.2, 1.0);
+		slSetFontSize(40);
+		slText(screenWidth / 2, screenHeight / 3, "Press BackSpace to replay");
+		slText(screenWidth / 2, screenHeight / 3, "Press Home to return to menu");
+		slSetFontSize(30);
+	}
+
+	slCircleFill(ball.x, ball.y, ball.rad, 500);
+
 }
 

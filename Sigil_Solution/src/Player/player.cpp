@@ -7,13 +7,15 @@ void initPlayer(createPlayer& player)
 {
 
 	player.lives = 3;
-	player.speed = 450.0f;
+	player.speed = 480.0f;
 
-	player.width = screenWidth / 8;
-	player.Height = screenHeight / 30;
+	player.width = screenWidth / 10;
+	player.Height = screenHeight / 35;
 
-	player.posX = screenWidth / 2;
-	player.posY = 0 + player.Height ;
+	player.x = screenWidth / 2;
+	player.y = 0 + player.Height ;
+
+
 
 	player.state = 0;
 
@@ -23,15 +25,15 @@ void initPlayer(createPlayer& player)
 
 void movePlayerRight(createPlayer& player)
 {
-	if (player.posX < screenWidth - (player.width / 2)) {
-		player.posX += player.speed * slGetDeltaTime();
+	if (player.x < screenWidth - (player.width / 2)) {
+		player.x += player.speed * slGetDeltaTime();
 	}
 }
 
 void movePlayerLeft(createPlayer& player)
 {
-	if (player.posX > 0 + (player.width / 2)) {
-		player.posX -= player.speed * slGetDeltaTime();
+	if (player.x > 0 + (player.width / 2)) {
+		player.x -= player.speed * slGetDeltaTime();
 	}
 }
 

@@ -6,3 +6,5 @@ void updateMenu();
 
 void drawMenu();
 
+void initTexture();
+

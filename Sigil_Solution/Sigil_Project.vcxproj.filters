@@ -39,6 +39,12 @@
     <ClCompile Include="src\Brick\brick.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="src\Ball\ball.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Credits\credits.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ScreenManager\Screen.h">
@@ -62,7 +68,10 @@
     <ClInclude Include="src\Brick\brick.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="src\Brick\vector2.h">
+    <ClInclude Include="src\Ball\ball.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Credits\credits.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

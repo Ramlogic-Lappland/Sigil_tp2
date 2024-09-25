@@ -1,9 +1,14 @@
+#include <iostream>
+
 #include "sl.h"
+
 #include "ScreenManager.h"
 #include "Screen.h"
 #include "Menu.h"
 #include "Game.h"
-#include <iostream>
+#include "credits.h"
+
+
 
 const int offset = 40;
 CurrentScreen currentScreen;
@@ -23,10 +28,11 @@ int run(void)
     while (!slShouldClose() && !slGetKey(SL_KEY_ESCAPE))
     {
 
+        initTexture();
+
         update();
 
         draw();
-
 
         slRender();
     }
@@ -57,6 +63,10 @@ void update()
         updateGame();
         break;
 
+    case credits:
+        updateCredits();
+        break;
+
     default:
         break;
     }
@@ -72,6 +82,10 @@ void draw()
 
     case game:
         drawGame();
+        break;
+
+    case credits:
+        drawCredits();
         break;
 
     default:

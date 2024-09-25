@@ -9,11 +9,12 @@ struct createPlayer
 	double width;
 	double Height;
 
-	float posY;
-	float posX;
+	float x,y;
+
 
 	bool state;
 
+	double points;
 	int powerUp;
 };
 
